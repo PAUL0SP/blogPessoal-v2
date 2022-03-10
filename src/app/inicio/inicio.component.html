@@ -1,10 +1,10 @@
 <div class="container-fluid">
 
-    <div class="row bg-info bg-gradient d-flex align-items-center">
-        <div class="col-md-6">
+    <div class="row bg-secondary bg-gradient d-flex align-items-center">
+        <div class="col-md-6 ">
             
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-6 text-white">
+                        <div class="col-md-6 text-white ">
                             <h1 class="fs-54">Seja bem vindo(a)!</h1>
                             <h5 class="fs-18"> Expresse aqui seus pensamentos e opiniões! </h5>                
                     </div>
@@ -12,8 +12,8 @@
 
                 <div class="row d-flex justify-content-center mt-3 mb-5">
                     <div class="col-md-6">
-                        <button class="btn btn-light mr-2" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button>
-                        <a class="btn btn-outline-light" href="#postagens">Ver Postagem</a>
+                        <button class="btn btn-info mr-2" data-toggle="modal" data-target="#novaPostagem">Nova Postagem</button>
+                        <a class="btn btn-outline-info text-white" href="#postagens">Ver Postagem</a>
                     </div>
                 </div>
            
@@ -26,8 +26,8 @@
 
 </div>
 
-<div class="container mb-5 mt-5  " id="postagens">
-    <nav>
+<div class="container mb-5 mt-5 " id="postagens">
+    <nav *ngIf='listaPostagens.length != 0'>
         <div class="nav nav-tabs d-flex justify-content-center  " id="nav-tab" role="tablist">
           <a class="nav-item nav-link active text-info font-wheight-bold" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens</a>
 
@@ -38,21 +38,28 @@
 
         </div>
       </nav>
+
+      <h2 *ngIf='listaPostagens.length == 0' class="text-center text-secondary mt-5">
+        Não existem postagens ainda...
+      </h2>
+
       <div class="tab-content mt-5" id="nav-tabContent">
 
         <div class="tab-pane fade show active " id="todasPostagens" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+
+          
             
            <div class="card-columns">
-            <div class="card text-center" *ngFor="let item of listaPostagens">
+            <div class="card text-center bg-secondary  bg-gradient" *ngFor="let item of listaPostagens">
               <div class="card-body">
-                <h5 class="card-title m-0">{{item.titulo}}</h5>
-                <small class="text-muted"> Tema: {{item.tema.descricao}}</small>
-                <p class="card-text mt-3">{{item.texto}}</p>
-                <p class="card-text"><small class="text-muted">
+                <h5 class="card-title text-white m-0">{{item.titulo}}</h5>
+                <small class="text-white"> Tema: {{item.tema.descricao}}</small>
+                <p class="card-text text-white mt-3">{{item.texto}}</p>
+                <p class="card-text"><small class="text-white">
                   {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
                 </small></p>
 
-                <p class="card-text"><small class="text-muted">
+                <p class="card-text"><small class="text-white">
                   by: {{item.usuario.nome}}
                 </small></p>
 
@@ -67,13 +74,21 @@
           
           <div class="card-columns">
             <div class="card text-center" *ngFor='let item of user.postagem'>
-              <div class="card-body">
-                <h5 class="card-title m-0">{{item.titulo}}</h5>
-                <small class="text-muted"> Tema: {{item.tema.descricao}}</small>
-                <p class="card-text mt-3">{{item.texto}}</p>
-                <p class="card-text"><small class="text-muted">
+              <div class="card-body  bg-secondary bg-gradient">
+                <h5 class="card-title text-light m-0">{{item.titulo}}</h5>
+                <small class="text-light"> Tema: {{item.tema.descricao}}</small>
+                <p class="card-text text-light mt-3">{{item.texto}}</p>
+                <p class="card-text text-light"><small class="text-muted">
                   {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
                 </small></p>
+                <button class="btn btn-outline-info mr-4">
+                     <a [routerLink]="['/postagem-edit', item.id]" class="text-center text-light mr-3" href=""> Editar</a>
+                </button>
+             
+                <button class="btn btn-outline-danger">
+                   <a [routerLink]="['/postagem-delete', item.id]" class="text-center text-light " href="">Apagar</a>
+                </button>
+               
 
               </div>
             </div>
@@ -85,14 +100,14 @@
           
           <div class="card-columns"*ngFor="let tema of listaTemas">
             <div class="card text-center" *ngFor='let item of tema.postagem'>
-              <div class="card-body">
-                <h5 class="card-title m-0">{{item.titulo}}</h5>
-                <p class="card-text mt-3">{{item.texto}}</p>
-                <p class="card-text"><small class="text-muted">
+              <div class="card-body bg-secondary bg-gradient">
+                <h5 class="card-title text-light m-0">{{item.titulo}}</h5>
+                <p class="card-text text-light mt-3">{{item.texto}}</p>
+                <p class="card-text"><small class="text-light">
                   {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
                 </small></p>
 
-                <p class="card-text"><small class="text-muted">
+                <p class="card-text"><small class="text-light">
                   by: {{item.usuario.nome}}
                 </small></p>
 
