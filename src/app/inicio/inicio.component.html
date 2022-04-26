@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    <div class="row bg-secondary bg-gradient d-flex align-items-center">
+    <div class="row gradient d-flex align-items-center">
         <div class="col-md-6 ">
             
                     <div class="row d-flex justify-content-center">
@@ -50,7 +50,7 @@
           
             
            <div class="card-columns">
-            <div class="card text-center bg-secondary  bg-gradient" *ngFor="let item of listaPostagens">
+            <div class="card text-center gradient" *ngFor="let item of listaPostagens">
               <div class="card-body">
                 <h5 class="card-title text-white m-0">{{item.titulo}}</h5>
                 <small class="text-white"> Tema: {{item.tema.descricao}}</small>
@@ -73,20 +73,20 @@
           
           
           <div class="card-columns">
-            <div class="card text-center" *ngFor='let item of user.postagem'>
-              <div class="card-body  bg-secondary bg-gradient">
+            <div class="card text-center gradient" *ngFor='let item of user.postagem'>
+              <div class="card-body">
                 <h5 class="card-title text-light m-0">{{item.titulo}}</h5>
                 <small class="text-light"> Tema: {{item.tema.descricao}}</small>
                 <p class="card-text text-light mt-3">{{item.texto}}</p>
-                <p class="card-text text-light"><small class="text-muted">
+                <p class="card-text text-light"><small class="text-light">
                   {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
                 </small></p>
-                <button class="btn btn-outline-info mr-4">
-                     <a [routerLink]="['/postagem-edit', item.id]" class="text-center text-light mr-3" href=""> Editar</a>
+                <button class="btn btn-success mr-4">
+                     <a [routerLink]="['/postagem-edit', item.id]" class="text-center text-white mr-3" href=""> Editar</a>
                 </button>
              
-                <button class="btn btn-outline-danger">
-                   <a [routerLink]="['/postagem-delete', item.id]" class="text-center text-light " href="">Apagar</a>
+                <button class="btn btn-danger">
+                   <a [routerLink]="['/postagem-delete', item.id]" class="text-center text-white " href="">Apagar</a>
                 </button>
                
 
@@ -99,8 +99,8 @@
         <div class="tab-pane fade " id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">
           
           <div class="card-columns"*ngFor="let tema of listaTemas">
-            <div class="card text-center" *ngFor='let item of tema.postagem'>
-              <div class="card-body bg-secondary bg-gradient">
+            <div class="card text-center gradient" *ngFor='let item of tema.postagem'>
+              <div class="card-body ">
                 <h5 class="card-title text-light m-0">{{item.titulo}}</h5>
                 <p class="card-text text-light mt-3">{{item.texto}}</p>
                 <p class="card-text"><small class="text-light">
